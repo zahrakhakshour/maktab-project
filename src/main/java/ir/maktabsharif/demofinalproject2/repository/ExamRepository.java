@@ -1,18 +1,21 @@
 package ir.maktabsharif.demofinalproject2.repository;
 
-import ir.maktabsharif.demofinalproject2.model.Course;
-import ir.maktabsharif.demofinalproject2.model.Teacher;
+import ir.maktabsharif.demofinalproject2.model.Exam;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
-public interface TeacherRepository extends JpaRepository<Teacher, Long> {
+public interface ExamRepository extends JpaRepository<Exam, Long> {
 
-    Optional<Teacher> findByUserName(String name);
+
+//    @Query("select e from Exam e where e.course.id =: courseId")
+//    List<Exam> findExamByCourse(@Param("course_id") Integer courseId);
+
+    List<Exam> findExamByCourse(Integer courseId);
+
 
 }
