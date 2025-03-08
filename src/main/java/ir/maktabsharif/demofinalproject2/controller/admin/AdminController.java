@@ -6,6 +6,7 @@ import ir.maktabsharif.demofinalproject2.model.Course;
 import ir.maktabsharif.demofinalproject2.model.Student;
 import ir.maktabsharif.demofinalproject2.model.Teacher;
 import ir.maktabsharif.demofinalproject2.model.UserAccount;
+import ir.maktabsharif.demofinalproject2.model.dto.ConfirmationResponse;
 import ir.maktabsharif.demofinalproject2.model.dto.UpdatableUserRequest;
 import ir.maktabsharif.demofinalproject2.model.dto.UserResponse;
 import ir.maktabsharif.demofinalproject2.service.CourseService;
@@ -47,12 +48,15 @@ public class AdminController {
 
     @PreAuthorize("hasAuthority('APPROVE_USER')")
     @PutMapping("/confirm/{userId}")
-    public ResponseEntity<String> confirm(@PathVariable Long userId) {
+    public ResponseEntity<ConfirmationResponse> confirm(@PathVariable Long userId) {
         if(userService.confirmUser(userId)){
-            return ResponseEntity.status(HttpStatus.OK).body("Confirmation for user "+userId+" successfully");
-        }
-        else {return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();}
-    }
+            ConfirmationResponse response = new ConfirmationResponse("Confirmation for user " + userId + " successfully", true);
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        }else {
+                ConfirmationResponse failedResponse = new ConfirmationResponse("Failed to confirm user " + userId, false);
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(failedResponse);
+            }}
+
 
     @PreAuthorize("hasAuthority('SEARCH_USER')")
     @GetMapping("/search")

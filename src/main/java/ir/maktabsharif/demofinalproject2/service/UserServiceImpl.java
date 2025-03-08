@@ -33,6 +33,7 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
 
 
+
     @Override
     public UserResponse save(UserRequest userRequest) {
        Role role = roleRepository.findById(userRequest.roleId())

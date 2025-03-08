@@ -19,6 +19,8 @@ public record UpdatableExamRequest(
         @Min(value = 1, message = "Duration must be greater than 0")
         Integer duration,
         @NotNull(message = "The Exam must be related to a course")
-        Integer courseId
+        Integer courseId,
+        @NotNull(message = "The Exam must be related to a teacher")
+        Long teacherId
 ) {
 }

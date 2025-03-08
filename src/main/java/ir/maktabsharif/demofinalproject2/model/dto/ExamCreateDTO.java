@@ -19,7 +19,9 @@ public record ExamCreateDTO(
         @Min(value = 1, message = "Duration must be greater than 0")
         int duration,
         @NotNull(message = "The Exam must be related to a course")
-        Integer courseId
+        Integer courseId ,
+        @NotNull(message = "The Exam must be related to a teacher")
+        Long teacherId
 
 ) {
 }

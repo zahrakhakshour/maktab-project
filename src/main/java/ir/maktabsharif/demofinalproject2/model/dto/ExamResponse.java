@@ -10,7 +10,9 @@ public record ExamResponse(
         String description,
         OffsetDateTime startTime,
         int duration,
-        Integer courseId
+        Integer courseId ,
+        Long teacherId ,
+        Double totalScore
 
 ) {
 }

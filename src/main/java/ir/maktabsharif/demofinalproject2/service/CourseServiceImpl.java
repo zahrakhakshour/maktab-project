@@ -6,6 +6,7 @@ import ir.maktabsharif.demofinalproject2.exeption.UserTypeMismatchException;
 import ir.maktabsharif.demofinalproject2.model.*;
 import ir.maktabsharif.demofinalproject2.model.dto.UserResponse;
 import ir.maktabsharif.demofinalproject2.repository.CourseRepository;
+import ir.maktabsharif.demofinalproject2.repository.TeacherRepository;
 import ir.maktabsharif.demofinalproject2.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,9 @@ public class CourseServiceImpl implements CourseService {
     private final CourseRepository courseRepository;
     private final UserRepository userRepository;
     private final UserService userService;
+    private final TeacherRepository teacherRepository;
+
+
 
     @Override
     public Course saveOrUpdate(Course course) {
@@ -51,9 +55,10 @@ public class CourseServiceImpl implements CourseService {
         userService.getUserById(teacherId)
                 .filter(user -> user.role().getName().equals("ROLE_TEACHER"))
                 .orElseThrow(() -> new EntityNotFoundException("Teacher with id " + teacherId + " not found or is not teacher"));
-        Teacher teacher = (Teacher) userRepository.findById(teacherId)
+        Teacher teacher =  teacherRepository.findById(teacherId)
                 .orElseThrow(() -> new EntityNotFoundException("Teacher with id " + teacherId + " not found"));
         existingCourse.setTeacher(teacher);
+
 
         return courseRepository.save(existingCourse);
     }

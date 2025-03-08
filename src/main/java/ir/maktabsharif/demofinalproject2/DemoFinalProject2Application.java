@@ -56,17 +56,36 @@ public class DemoFinalProject2Application {
 //        Role role = new Role();
 //        role.setName("ROLE_ADMIN");
 //        roleRepository.save(role);
+//        Role role2 = new Role();
+//        role2.setName("ROLE_STUDENT");
+//        roleRepository.save(role2);
+//        Role role3 = new Role();
+//        role3.setName("ROLE_TEACHER");
+//        roleRepository.save(role3);
 
 
+//
 //        BCryptPasswordEncoder bCryptPasswordEncoder = context.getBean(BCryptPasswordEncoder.class);
 //        String encode = bCryptPasswordEncoder.encode("12345678");
-//        Optional<Role> byId = roleRepository.findById(102);
+//        Optional<Role> byId = roleRepository.findById(1);
 //        UserAccount userAccount = UserAccount.builder()
 //                .userName("adminadmin")
 //                .password(encode)
 //                .role(byId.get())
 //                .build();
 //        userRepository.save(userAccount);
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
 }
